@@ -16,34 +16,31 @@ and running it on a simulated arm.
 ## Deliverables
 1. Summary of how VLA models work 
 2. Compressed OpenVLA model running within 16GB
-3. Pick-and-place environment in Isaac Sim integrated with the compressed model
+3. Pick-and-place environment in Gazebo integrated with the compressed model
 4. Evaluation of success rate, memory, and latency across compression levels
 
 ## System Blocks
-Language instruction + camera image 
-        ↓
-Compressed OpenVLA 
-        ↓
-Action tokens → end-effector deltas + gripper command
-        ↓
-IK / arm controller
-        ↓
-Simulated arm moves in Isaac Sim → new camera image
+```mermaid
+flowchart LR
+    A[Language Instruction] --> C[Compressed VLA Model]
+    B[Camera Image] --> C
+    C --> D[Arm Controller]
+    D --> E[Simulated Robot Arm]
+    E --> B
+```
 
 ## Hardware / Software Requirements
 **Hardware:** NVIDIA RTX GPU with at least 16GB VRAM
-**Software:** Ubuntu 22.04, NVIDIA Isaac Sim, Python, PyTorch, Hugging Face Transformers,
-bitsandbytes, OpenVLA
+**Software:** Ubuntu 22.04, Gazebo, Python
 
-## Team Responsibilities & Lead Roles
-| Member | Responsibilities |
-| Sean DiMattio | Isaac Sim environment, controller integration, model-to-simulator interface | Setup, Software, Networking |
-| April  | OpenVLA setup, model compression, benchmarking | Research, Algorithm Design, Writing |
+## Team Responsibilities/Lead Roles
+Sean DiMattio: Gazebo environment, controller integration, model-to-simulator interface
+April: OpenVLA setup, model compression
 
 ## Project Timeline
 
 ## References
-1. Kim et al., "OpenVLA: An Open-Source Vision-Language-Action Model." https://arxiv.org/abs/2406.09246
-2. Song et al., "Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline." https://arxiv.org/abs/2602.22663 · Code: https://github.com/OpenHelix-Team/LLaVA-VLA
-3. NVIDIA, "Training Healthcare Robots from Scratch with Isaac for Healthcare." https://docs.nvidia.com/learning/physical-ai/getting-started-with-isaac-for-healthcare/latest/index.html
-4. NVIDIA Isaac Sim. https://github.com/isaac-sim/IsaacSim
+1. OpenVLA: An Open-Source Vision-Language-Action Model. (https://arxiv.org/pdf/2406.09246)
+2. Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline. (https://arxiv.org/pdf/2602.22663) (https://github.com/OpenHelix-Team/LLaVA-VLA)
+3. NVIDIA, Training Healthcare Robots from Scratch with Isaac for Healthcare. (https://docs.nvidia.com/learning/physical-ai/getting-started-with-isaac-for-healthcare/latest/training-healthcare-robots-from-scratch/04-model-flywheel/03-deploy.html)
+4. Gazebo. (https://gazebosim.org)
